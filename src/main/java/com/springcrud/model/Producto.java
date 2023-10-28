@@ -21,7 +21,7 @@ public class Producto {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_prov", insertable = false, updatable = false)
-	private Categoria objProveedor;
+	private Proveedor objProveedor;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cate", insertable = false, updatable = false)
