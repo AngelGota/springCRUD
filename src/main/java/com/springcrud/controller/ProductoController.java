@@ -11,9 +11,14 @@ import com.springcrud.repository.*;
 public class ProductoController {
 	@Autowired
 	private IProductoRepository repoProducto;
-	
+	@Autowired
+	private ICategoriaRepository repoCat;
+	@Autowired
+	private IProveedorRepository repoProve;
 	@GetMapping("/ListaProducto")
 	public String ListaProducto(Model model) {
+		model.addAttribute("lstCategorias", repoCat.findAll());
+		model.addAttribute("lstProveedores", repoProve.findAll());
 		model.addAttribute("lstProductos", repoProducto.findAll());
 		return "crudproductos";
 	}

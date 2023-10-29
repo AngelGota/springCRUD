@@ -41,7 +41,8 @@
 					<label for="inputCat">Categoría</label> 
 					<select id="inputCat" class="form-control" >
 						<option value="-1">Seleccione...</option>
-						
+						<option th:each="lstcat : ${lstCategorias}" th:value="${lstcat.id_cate}"
+									th:text="${lstcat.nom_cate}"></option>
 					</select>
 					
 				</div>
@@ -57,7 +58,8 @@
 					<label for="inputProv">Proveedor</label> 
 					<select id="inputProv" class="form-control"    >
 						<option value="-1">Seleccione...</option>
-						
+						<option th:each="lstprov : ${lstProveedores}" th:value="${lstprov.id_prov}"
+									th:text="${lstprov.nom_prov}"></option>
 					</select>
 				</div>
 			</div>
