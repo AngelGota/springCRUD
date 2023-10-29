@@ -11,35 +11,35 @@
 		<div class="row">
 				<div class="col-6 col-sm-4">
 		<h1>Mantenimiento de Productos</h1>
-		<form action="" method="post">
+		<form action="/grabar" method="post" th:object="${producto}">
 			
 			<div class="form-group">
 				<label for="inputCod">Código</label> 
-				<input type="text" 
+				<input type="text" th:field="*{id_prod}"
 					class="form-control" id="inputCod" placeholder="Código">
 			</div>
 			<div class="form-group">
 				<label for="inputNom">Nombre</label> 
-				<input type="text" 
+				<input type="text" th:field="*{nom_prod}"
 					class="form-control" id="inputNom"
 					placeholder="Nombre">
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputStk">Stock</label> 
-					<input type="number" 
+					<input type="number" th:field="*{pre_prod}"
 						class="form-control" id="inputStk" placeholder="0">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="inputPrec">Precio</label> 
-					<input type="number" step="0.01"  
+					<input type="number" step="0.01" th:field="*{stock}"
 						class="form-control" id="inputPrec" placeholder="0.00">
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<label for="inputCat">Categoría</label> 
-					<select id="inputCat" class="form-control" >
+					<select id="inputCat" class="form-control" th:field="*{id_prov}">
 						<option value="-1">Seleccione...</option>
 						<option th:each="lstcat : ${lstCategorias}" th:value="${lstcat.id_cate}"
 									th:text="${lstcat.nom_cate}"></option>
@@ -56,7 +56,7 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label for="inputProv">Proveedor</label> 
-					<select id="inputProv" class="form-control"    >
+					<select id="inputProv" class="form-control" th:field="*{id_cate}">
 						<option value="-1">Seleccione...</option>
 						<option th:each="lstprov : ${lstProveedores}" th:value="${lstprov.id_prov}"
 									th:text="${lstprov.nom_prov}"></option>
@@ -65,8 +65,9 @@
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Registrar</button>
+			<div th:text="${mensaje}" th:class="${cssmensaje}" role="alert"></div>
 		</form>
-		<div th:text="${mensaje}"></div>
+
 	</div>
 	<div class="col-6 col-sm-7">
 				<h3></h3>
@@ -89,6 +90,9 @@
 							<td th:text="${p.stock}"></td>
 							<td th:text="${p.objProveedor.nom_prov}"></td>
 							<td th:text="${p.objCategoria.nom_cate}"></td>
+							<td>
+								<a th:href="@{/editar/}+${p.id_prod}" class="btn btn-warning">Editar</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
